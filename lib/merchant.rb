@@ -1,12 +1,12 @@
 class Merchant
 
-  attr_reader :name, :id 
+  attr_reader :name, :id
 
   def initialize(args, id = 3)
     @name = args[:name]
-    @id = id
+    @id = id.to_i
   end
 
-
+  
 
 end
