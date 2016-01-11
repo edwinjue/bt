@@ -1,5 +1,5 @@
-require 'minitest'
-require './lib/merchant'
+require 'test_helper'
+require 'merchant'
 
 
 class MerchantTest < Minitest::Test
@@ -20,5 +20,5 @@ class MerchantTest < Minitest::Test
     assert_equal 5, m.id
   end
 
-  
+
 end

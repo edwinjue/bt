@@ -1,4 +1,4 @@
-require 'minitest'
+require 'test_helper'
 require 'merchant_repository'
 
 
