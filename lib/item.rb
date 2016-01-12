@@ -12,4 +12,8 @@ class Item
     @id = args[:id].to_i
   end
 
+  def merchant(se)
+    se.merchants.find_by_id(merchant_id)
+  end
+
 end

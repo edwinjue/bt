@@ -7,6 +7,8 @@ class Merchant
     @id = args[:id].to_i
   end
 
-
+  def items(se)
+    se.items.find_all_by_merchant_id(id)
+  end
 
 end
