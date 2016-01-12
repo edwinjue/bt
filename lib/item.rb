@@ -8,10 +8,8 @@ class Item
     @unit_price = args[:unit_price]
     @created_at = args[:created_at]
     @updated_at = args[:updated_at]
-    @id = id
+    @id = id.to_i
   end
-
-
 
 
 
