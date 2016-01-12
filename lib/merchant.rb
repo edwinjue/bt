@@ -2,11 +2,11 @@ class Merchant
 
   attr_reader :name, :id
 
-  def initialize(args, id = 3)
+  def initialize(args)
     @name = args[:name]
-    @id = id.to_i
+    @id = args[:id].to_i
   end
 
-  
+
 
 end

@@ -10,7 +10,7 @@ class MerchantRepository
     data = CSV.open filename, headers: true, header_converters: :symbol
 
     data.each do |row|
-      merchants << Merchant.new({:name => row[:name]}, row[:id])
+      merchants << Merchant.new({:name => row[:name], :id => row[:id]})
     end
   end
 
