@@ -1,4 +1,5 @@
 require 'csv'
+require_relative 'merchant'
 
 class MerchantRepository
   attr_reader :merchants
@@ -27,7 +28,6 @@ class MerchantRepository
   end
 
   def find_all_by_name(name)
-    #get all elements that match name
     merchants.find_all do |merchant|
       merchant.name.downcase.include?(name.downcase)
     end

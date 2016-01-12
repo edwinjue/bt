@@ -1,3 +1,4 @@
+require_relative 'item'
 class ItemRepository
 
   attr_reader :items
@@ -32,7 +33,7 @@ class ItemRepository
     end
   end
 
-  def find_by_description(description)
+  def find_all_with_description(description)
     items.find_all do |item|
       item.description.downcase == description.downcase
     end
