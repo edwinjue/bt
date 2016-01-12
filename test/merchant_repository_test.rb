@@ -37,7 +37,6 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_will_return_nil_if_invalid_Merchant_name
-    skip
     mr = MerchantRepository.new
     mr.load_data("./data/merchants.csv")
     merchant = mr.find_by_name("Amie")
@@ -45,29 +44,28 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_will_find_by_name_regardless_of_case
-    skip
     mr = MerchantRepository.new
     mr.load_data("./data/merchants.csv")
-    merchant = mr.find_by_name("SwaNIawski-cremin")
-    assert_equal "Swaniawski-Cremin", merchant.name
-    assert_equal 96, merchant.id
+    merchant = mr.find_by_name("DisCoUntDiVA56")
+    assert_equal "DiscountDiva56", merchant.name
+    assert_equal 12334510, merchant.id
   end
 
   def test_will_find_all_Merchants_by_name
-    skip
+
     mr = MerchantRepository.new
     mr.load_data("./data/merchants.csv")
-    merchants = mr.find_all_by_name("son")
-    assert_equal "Willms and Sons", merchants[0].name
-    assert_equal 18, merchants.length
+    merchants = mr.find_all_by_name("the")
+    assert_equal "TheLilPinkBowtique", merchants[0].name
+    assert_equal 24, merchants.length
   end
 
   def test_will_find_all_Merchants_by_name_is_case_insensitive
-    skip
+
     mr = MerchantRepository.new
     mr.load_data("./data/merchants.csv")
-    merchants = mr.find_all_by_name("SON")
-    assert_equal "Okuneva, Prohaska and Rolfson", merchants.last.name
-    assert_equal 18, merchants.length
+    merchants = mr.find_all_by_name("ArT")
+    assert_equal "fancybookart", merchants.last.name
+    assert_equal 35, merchants.length
   end
 end
