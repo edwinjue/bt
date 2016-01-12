@@ -1,6 +1,7 @@
+require 'bigdecimal'
 class Item
 
-  attr_reader :name, :description, :unit_price, :created_at, :updated_at, :id, :merchant_id
+  attr_reader :name, :description, :unit_price, :created_at, :updated_at, :id, :merchant_id, :merchant
 
   def initialize(args)
     @name = args[:name]
@@ -12,8 +13,8 @@ class Item
     @id = args[:id].to_i
   end
 
-  def merchant(se)
-    se.merchants.find_by_id(merchant_id)
+  def set_merchant(merchant)
+    @merchant = merchant
   end
 
 end

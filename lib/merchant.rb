@@ -1,14 +1,15 @@
 class Merchant
 
-  attr_reader :name, :id
+  attr_reader :name, :id, :items
 
   def initialize(args)
     @name = args[:name]
     @id = args[:id].to_i
   end
 
-  def items(se)
-    se.items.find_all_by_merchant_id(id)
+  def set_items(items)
+    @items = items
   end
+
 
 end
