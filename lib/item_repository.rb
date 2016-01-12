@@ -15,8 +15,8 @@ class ItemRepository
         :unit_price => row[:unit_price],
         :created_at => row[:created_at],
         :updated_at => row[:updated_at],
-        :merchant_id => row[:merchant_id]
-        },row[:id])
+        :merchant_id => row[:merchant_id],
+        :id => row[:id]})
       end
   end
 

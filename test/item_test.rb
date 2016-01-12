@@ -10,8 +10,9 @@ class ItemTest < Minitest::Test
       :description => "You can use it to write things",
       :unit_price => BigDecimal.new(10.99,4),
       :created_at => Time.now,
-      :updated_at => Time.now
-      })
+      :updated_at => Time.now,
+      :id => 932113,
+      :merchant_id => 22145687})
 
       assert_equal "Pencil", i.name
   end
@@ -21,8 +22,9 @@ class ItemTest < Minitest::Test
       :description => "You can use it to write things",
       :unit_price => BigDecimal.new(10.99,4),
       :created_at => Time.now,
-      :updated_at => Time.now
-      })
+      :updated_at => Time.now,
+      :id => 932113,
+      :merchant_id => 22145687})
 
       assert_equal "You can use it to write things", i.description
     end
@@ -32,8 +34,9 @@ class ItemTest < Minitest::Test
         :description => "You can use it to write things",
         :unit_price => BigDecimal.new(10.99,4),
         :created_at => Time.now,
-        :updated_at => Time.now
-        })
+        :updated_at => Time.now,
+        :id => 932113,
+        :merchant_id => 22145687})
 
         assert_equal 10.99, i.unit_price
     end
@@ -43,8 +46,9 @@ class ItemTest < Minitest::Test
         :description => "You can use it to write things",
         :unit_price => BigDecimal.new(10.99,4),
         :created_at => Time.now,
-        :updated_at => Time.now
-        })
+        :updated_at => Time.now,
+        :id => 932113,
+        :merchant_id => 22145687})
 
         assert i.created_at.kind_of?(Time)
     end
@@ -54,34 +58,36 @@ class ItemTest < Minitest::Test
         :description => "You can use it to write things",
         :unit_price => BigDecimal.new(10.99,4),
         :created_at => Time.now,
-        :updated_at => Time.now
-        })
+        :updated_at => Time.now,
+        :id => 932113,
+        :merchant_id => 22145687})
 
         assert i.updated_at.kind_of?(Time)
     end
 
-    def test_item_has_an_ID
+    def test_item_can_return_an_ID_number
       i = Item.new({ :name => "Pencil",
         :description => "You can use it to write things",
         :unit_price => BigDecimal.new(10.99,4),
         :created_at => Time.now,
-        :updated_at => Time.now
-        })
-
-        assert_equal 131234, i.id
-    end
-
-    def test_item_can_set_an_ID_number
-      i = Item.new({ :name => "Pencil",
-        :description => "You can use it to write things",
-        :unit_price => BigDecimal.new(10.99,4),
-        :created_at => Time.now,
-        :updated_at => Time.now
-        },932113)
+        :updated_at => Time.now,
+        :id => 932113,
+        :merchant_id => 22145687})
 
         assert_equal 932113, i.id
     end
 
+    def test_item_can_return_a_merchant_ID_number
+      i = Item.new({ :name => "Pencil",
+        :description => "You can use it to write things",
+        :unit_price => BigDecimal.new(10.99,4),
+        :created_at => Time.now,
+        :updated_at => Time.now,
+        :id => 932113,
+        :merchant_id => 22145687})
+
+        assert_equal 22145687, i.merchant_id
+    end
 
 
 end
