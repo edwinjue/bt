@@ -5,9 +5,11 @@ class SalesEngine
     @merchants = MerchantRepository.new
   end
 
-  def load_data(args)
-    items.load_data(args[:items])
-    merchants.load_data(args[:merchants])
+  def self.from_csv(args)
+    se = SalesEngine.new
+    se.items.load_data(args[:items])
+    se.merchants.load_data(args[:merchants])
+    se
   end
 
 end
