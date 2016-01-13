@@ -1,4 +1,8 @@
 #require 'math'
+require 'pry'
+require 'descriptive_statistics'
+require "sales_engine"
+
 class SalesAnalyst
 
   attr_reader :se
@@ -17,8 +21,24 @@ class SalesAnalyst
     sum/num_merchants.to_f
   end
 
+  def average_items_per_merchant2
+    merchant_items_count = []
+    merchant_items_count = se.merchants.collect{ |m|
+      m.items.length
+    }
+    merchant_items_count.mean
+  end
+
   def average_items_per_merchant_standard_deviation
     Math.sqrt(items_variance)
+  end
+
+  def average_items_per_merchant_standard_deviation2
+    merchant_items_count = []
+    merchant_items_count = se.merchants.collect{ |m|
+      m.items.length
+    }
+    merchant_items_count.standard_deviation
   end
 
   def total_number_of_merchants
@@ -48,6 +68,12 @@ class SalesAnalyst
     sum/items.length.to_f
   end
 
+  def average_item_price_for_merchant2(merchant_id)
+    merchant = se.merchants.find_by_id(merchant_id)
+    items = merchant.items.collect {|i| i.unit_price }
+    items.mean
+  end
+
   def average_price_per_merchant
     total_merch =total_number_of_merchants
     merchants = se.merchants.all
@@ -56,6 +82,20 @@ class SalesAnalyst
       total + item.unit_price
     end
     total_items_price/total_merch
+  end
+
+  def average_price_per_merchant2
+    merchant_avg_price_hash = {}
+    se.merchants.each{ |m|
+      sum = m.items.reduce(0){ |memo,i|
+        memo += i.unit_price.to_f
+      }
+       "#{m.id}: sum = #{sum}"
+       "#{m.id}: m.items.length = #{m.items.length}"
+       "#{m.id}: merchant_avg_price = #{sum/m.items.length}"
+      merchant_avg_price_hash[m.id] = sum/m.items.length
+    }
+    merchant_avg_price_hash.mean
   end
 
   def prices_variance
@@ -82,3 +122,23 @@ class SalesAnalyst
   end
 
 end
+
+se = SalesEngine.from_csv({
+  :items     => "./data/items.csv",
+  :merchants => "./data/merchants.csv",
+})
+
+sa = SalesAnalyst.new(se)
+#binding.pry
+puts "average_item_price_for_merchant(12334105)"
+puts sa.average_item_price_for_merchant(12334105).to_f
+puts sa.average_item_price_for_merchant2(12334105)
+puts "average_price_per_merchant"
+puts sa.average_price_per_merchant.to_f
+puts sa.average_price_per_merchant2
+puts "average_items_per_merchant"
+puts sa.average_items_per_merchant
+puts sa.average_items_per_merchant2
+puts "average_items_per_merchant_standard_deviation"
+puts sa.average_items_per_merchant_standard_deviation
+puts sa.average_items_per_merchant_standard_deviation2

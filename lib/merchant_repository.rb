@@ -2,9 +2,17 @@ require 'csv'
 require_relative 'merchant'
 
 class MerchantRepository
+  include Enumerable
+  
   attr_reader :merchants
   def initialize
     @merchants = []
+  end
+
+  def each
+    all.each{ |i|
+      yield i
+    }
   end
 
   def load_data(filename)

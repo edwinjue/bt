@@ -1,10 +1,17 @@
 require_relative 'item'
 class ItemRepository
+  include Enumerable
 
   attr_reader :items
 
   def initialize
     @items = []
+  end
+
+  def each
+    all.each{ |i|
+      yield i
+    }
   end
 
   def load_data(filename)
