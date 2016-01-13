@@ -90,9 +90,7 @@ class SalesAnalyst
       sum = m.items.reduce(0){ |memo,i|
         memo += i.unit_price.to_f
       }
-       "#{m.id}: sum = #{sum}"
-       "#{m.id}: m.items.length = #{m.items.length}"
-       "#{m.id}: merchant_avg_price = #{sum/m.items.length}"
+      
       merchant_avg_price_hash[m.id] = sum/m.items.length
     }
     merchant_avg_price_hash.mean
